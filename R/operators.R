@@ -19,12 +19,12 @@ NULL
 #'
 #' @description Right side when left side is \code{NA}
 #'
-#' @param a,b Returns first non-\code{NA}.
+#' @param x,y Returns first non-\code{NA}.
 #' @examples
 #' 1 %||% 2 # returns 1
 #' NA %||% 2 # returns 2
 #' @export
-`%||%` <- function(a, b) if (is.na(a)) b else a
+`%||%` <- function(x, y) ifelse(is.na(x), y, x)
 
 #' @name paste0
 #' @aliases paste0
@@ -52,7 +52,7 @@ NULL
 #' @examples
 #' NA %,% "this" %,% 1900 # returns "this, 1900"
 #' @export
-`%,%` <- function(x, y) paste0(as.character(x) %||% '', ifelse(is.na(x), '', ', '), as.character(y) %||% '')
+`%,%` <- function(x, y) (as.character(x) %||% '') %+% ifelse(is.na(x), '', ', ') %+% (as.character(y) %||% '')
 
 #' @name paste.space
 #' @aliases paste.space
@@ -66,7 +66,7 @@ NULL
 #' @examples
 #' NA % % "this" % % 1900 # returns "this 1900"
 #' @export
-`% %` <- function(x, y) paste0(as.character(x) %||% '', ifelse(is.na(x), '', ' '), as.character(y) %||% '')
+`% %` <- function(x, y) (as.character(x) %||% '') %+% ifelse(is.na(x), '', ' ') %+% (as.character(y) %||% '')
 
 #' @name file.path
 #' @aliases %//%
@@ -94,3 +94,4 @@ NULL
 #' 4 %!in% 1:3 # returns TRUE
 #' @export
 `%!in%` <- function(x, table) match(x, table, nomatch = 0L) <= 0L
+

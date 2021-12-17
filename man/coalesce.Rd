@@ -5,10 +5,10 @@
 \alias{\%||\%}
 \title{Coalesce}
 \usage{
-a \%||\% b
+x \%||\% y
 }
 \arguments{
-\item{a, b}{Returns first non-\code{NA}.}
+\item{x, y}{Returns first non-\code{NA}.}
 }
 \description{
 Right side when left side is \code{NA}
